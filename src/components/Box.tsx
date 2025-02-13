@@ -1,14 +1,18 @@
+/* eslint-disable react/no-unknown-property */
 import { useRef, useState } from "react";
-
 import * as THREE from "three";
 import { ThreeElements, useFrame } from "@react-three/fiber";
 
 export function Box(props: ThreeElements["mesh"]) {
-  const ref = useRef<THREE.Mesh>(null!);
+  const ref = useRef<THREE.Mesh>(null);
   const [hovered, hover] = useState(false);
   const [clicked, click] = useState(false);
 
-  useFrame((_state, delta) => (ref.current.rotation.x += delta));
+  useFrame((_state, delta) => {
+    if (ref.current) {
+      ref.current.rotation.x += delta;
+    }
+  });
 
   return (
     <mesh
