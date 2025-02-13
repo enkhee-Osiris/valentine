@@ -23,7 +23,7 @@ function App() {
 
       <group>
         <Float floatIntensity={2} speed={1}>
-          <Floppy rotation-y={-Math.PI / 5} scale={[0.3, 0.3, 0.3]} position={[0, 0, -2]} />
+          <Floppy rotation-y={-Math.PI / 5} scale={[0.4, 0.4, 0.4]} position={[0, 0, -1]} />
         </Float>
       </group>
 

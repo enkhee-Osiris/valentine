@@ -18,7 +18,8 @@ export function Floppy(props: FloppyProps) {
 
   return (
     <group {...props} dispose={null}>
-      <group ref={groupRef} rotation={[-2.782, 0.186, 2.658]} scale={0.01}>
+      {/* <group ref={groupRef} rotation={[-2.782, 0.186, 2.658]} scale={0.01}> */}
+      <group ref={groupRef} rotation={[-2.7, 0, 2.5]} scale={0.01}>
         <mesh
           castShadow
           receiveShadow
