@@ -1,16 +1,33 @@
 /* eslint-disable react/no-unknown-property */
 import "./App.css";
 import { Canvas } from "@react-three/fiber";
-import { Box } from "./components/Box";
+import { Floppy } from "./components/Floppy";
+import { Environment, Float, OrbitControls, PerspectiveCamera, Stats } from "@react-three/drei";
+import { Background } from "./components/Background";
+import { CloudGroup } from "./components/CloudGroup";
 
 function App() {
   return (
     <Canvas>
-      <ambientLight intensity={Math.PI / 2} />
-      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
-      <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-      <Box position={[-1.2, 0, 0]} />
-      <Box position={[1.2, 0, 0]} />
+      <color attach="background" args={["#ececec"]} />
+
+      <OrbitControls />
+
+      <Environment preset="sunset" />
+
+      <PerspectiveCamera position={[0, 0, 5]} fov={30} makeDefault />
+
+      <Stats />
+
+      <Background />
+
+      <group>
+        <Float floatIntensity={2} speed={1}>
+          <Floppy rotation-y={-Math.PI / 5} scale={[0.3, 0.3, 0.3]} position={[0, 0, -2]} />
+        </Float>
+      </group>
+
+      <CloudGroup />
     </Canvas>
   );
 }

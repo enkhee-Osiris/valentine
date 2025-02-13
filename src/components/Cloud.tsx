@@ -1,0 +1,53 @@
+import { useEffect, useRef, useState } from "react";
+import * as THREE from "three";
+import { useGLTF } from "@react-three/drei";
+import { ThreeElements, useFrame } from "@react-three/fiber";
+
+export type CloudProps = ThreeElements["group"] & {
+  opacity?: number;
+};
+
+export function Cloud({ opacity, ...props }: CloudProps) {
+  const { nodes, materials } = useGLTF("./public/models/cloud.glb");
+
+  const [firstPosition, setFirstPosition] = useState<null | number>(null);
+
+  const [direction, setDirection] = useState(1); // 1 = right, -1 = left
+  const groupRef = useRef<THREE.Group>(null);
+
+  useEffect(() => {
+    if (groupRef.current) {
+      setFirstPosition(groupRef.current.position.x);
+    }
+  }, []);
+
+  const randomDelta = useState(() => (~~(Math.random() * 3) + 1) * 0.0002)[0];
+  const randomRange = useState(() => ~~(Math.random() * 100) + 50)[0];
+
+  useFrame(() => {
+    if (groupRef.current) {
+      groupRef.current.position.x += randomDelta * direction;
+
+      if (firstPosition !== null) {
+        if (groupRef.current.position.x - firstPosition > randomDelta * randomRange) {
+          setDirection(-1); // Move left
+        } else if (firstPosition - groupRef.current.position.x > randomDelta * randomRange) {
+          setDirection(1); // Move right
+        }
+      }
+    }
+  });
+
+  return (
+    <group ref={groupRef} {...props} dispose={null}>
+      <mesh
+        // @ts-ignore
+        geometry={nodes.Node.geometry}
+      >
+        <meshStandardMaterial {...materials["lambert2SG.001"]} transparent opacity={opacity} />
+      </mesh>
+    </group>
+  );
+}
+
+useGLTF.preload("./public/models/cloud.glb");
