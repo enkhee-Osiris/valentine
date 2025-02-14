@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import { useRef } from "react";
 import * as THREE from "three";
 import { useGLTF } from "@react-three/drei";
@@ -18,33 +19,32 @@ export function Floppy(props: FloppyProps) {
 
   return (
     <group {...props} dispose={null}>
-      {/* <group ref={groupRef} rotation={[-2.782, 0.186, 2.658]} scale={0.01}> */}
       <group ref={groupRef} rotation={[-2.7, 0, 2.5]} scale={0.01}>
         <mesh
           castShadow
           receiveShadow
-          // @ts-ignore
+          // @ts-expect-error
           geometry={nodes.Box_LP.geometry}
           material={materials["floppy.001"]}
         />
         <mesh
           castShadow
           receiveShadow
-          // @ts-ignore
+          // @ts-expect-error
           geometry={nodes.Circle_LP.geometry}
           material={materials["floppy.002"]}
         />
         <mesh
           castShadow
           receiveShadow
-          // @ts-ignore
+          // @ts-expect-error
           geometry={nodes.Main_LP.geometry}
           material={materials.floppy}
         />
         <mesh
           castShadow
           receiveShadow
-          // @ts-ignore
+          // @ts-expect-error
           geometry={nodes.Metal_LP.geometry}
           material={materials["floppy.003"]}
         />

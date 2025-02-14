@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { useGLTF } from "@react-three/drei";
@@ -39,11 +40,12 @@ export function Cloud({ opacity, ...props }: CloudProps) {
   });
 
   return (
-    <group ref={groupRef} {...props} dispose={null}>
+    <group {...props} ref={groupRef} dispose={null}>
       <mesh
-        // @ts-ignore
+        // @ts-expect-error
         geometry={nodes.Node.geometry}
       >
+        {/* eslint-disable @typescript-eslint/no-misused-spread */}
         <meshStandardMaterial {...materials["lambert2SG.001"]} transparent opacity={opacity} />
       </mesh>
     </group>

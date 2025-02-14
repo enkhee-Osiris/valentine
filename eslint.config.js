@@ -39,6 +39,8 @@ export default tseslint.config(
     rules: {
       ...reactHooks.configs.recommended.rules,
       ...reactThree.configs.recommended.rules,
+      "@typescript-eslint/ban-ts-comment": "off",
+      "@typescript-eslint/no-unsafe-assignment": "off",
       "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
     },
   }

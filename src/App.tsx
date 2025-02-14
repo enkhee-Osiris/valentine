@@ -2,33 +2,36 @@
 import "./App.css";
 import { Canvas } from "@react-three/fiber";
 import { Floppy } from "./components/Floppy";
-import { Environment, Float, OrbitControls, PerspectiveCamera, Stats } from "@react-three/drei";
+import { Environment, Float, Loader, PerspectiveCamera } from "@react-three/drei";
 import { Background } from "./components/Background";
 import { CloudGroup } from "./components/CloudGroup";
+import { Suspense } from "react";
 
 function App() {
   return (
-    <Canvas>
-      <color attach="background" args={["#ececec"]} />
+    <>
+      <Canvas>
+        <color attach="background" args={["#ececec"]} />
 
-      <OrbitControls />
+        <Environment preset="sunset" />
 
-      <Environment preset="sunset" />
+        <PerspectiveCamera position={[0, 0, 5]} fov={30} makeDefault />
 
-      <PerspectiveCamera position={[0, 0, 5]} fov={30} makeDefault />
+        <Background />
 
-      <Stats />
+        <Suspense fallback={null}>
+          <group>
+            <Float floatIntensity={2} speed={1}>
+              <Floppy rotation-y={-Math.PI / 5} scale={[0.4, 0.4, 0.4]} position={[0, 0, -1]} />
+            </Float>
+          </group>
 
-      <Background />
+          <CloudGroup />
+        </Suspense>
+      </Canvas>
 
-      <group>
-        <Float floatIntensity={2} speed={1}>
-          <Floppy rotation-y={-Math.PI / 5} scale={[0.4, 0.4, 0.4]} position={[0, 0, -1]} />
-        </Float>
-      </group>
-
-      <CloudGroup />
-    </Canvas>
+      <Loader />
+    </>
   );
 }
 

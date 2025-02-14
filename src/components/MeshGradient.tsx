@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import { useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 import { useFrame, useThree } from "@react-three/fiber";
@@ -157,8 +158,8 @@ export function MeshGradient({
   backgroundColor = "#FFFFFF",
   backgroundOpacity = 1.0,
 }: MeshGradientProps) {
-  const meshRef = useRef<THREE.Mesh>(null!);
-  const shaderRef = useRef<THREE.ShaderMaterial>(null!);
+  const meshRef = useRef<THREE.Mesh>(null);
+  const shaderRef = useRef<THREE.ShaderMaterial>(null);
 
   const renderer = useThree((state) => state.gl);
 
@@ -173,10 +174,14 @@ export function MeshGradient({
     // renderer.useLegacyLights = true;
     // renderer.outputEncoding = THREE.sRGBEncoding;
 
-    return () => renderer.dispose();
+    return () => {
+      renderer.dispose();
+    };
   });
 
-  useFrame((_, delta) => setTime(time + speed * delta));
+  useFrame((_, delta) => {
+    setTime(time + speed * delta);
+  });
 
   return (
     <mesh ref={meshRef} position={new THREE.Vector3(0, 0, 0)}>

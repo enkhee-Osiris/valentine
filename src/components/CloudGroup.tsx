@@ -5,7 +5,6 @@ export type CloudGroupProps = ThreeElements["group"];
 
 export function CloudGroup(props: CloudGroupProps) {
   const { viewport } = useThree();
-  console.log(viewport);
 
   return (
     <group {...props}>
