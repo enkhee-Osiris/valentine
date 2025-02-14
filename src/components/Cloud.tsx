@@ -9,7 +9,7 @@ export type CloudProps = ThreeElements["group"] & {
 };
 
 export function Cloud({ opacity, ...props }: CloudProps) {
-  const { nodes, materials } = useGLTF("./public/models/cloud.glb");
+  const { nodes, materials } = useGLTF("./models/cloud.glb");
 
   const [firstPosition, setFirstPosition] = useState<null | number>(null);
 
@@ -52,4 +52,4 @@ export function Cloud({ opacity, ...props }: CloudProps) {
   );
 }
 
-useGLTF.preload("./public/models/cloud.glb");
+useGLTF.preload("./models/cloud.glb");

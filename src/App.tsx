@@ -6,6 +6,7 @@ import { Environment, Float, Loader, PerspectiveCamera } from "@react-three/drei
 import { Background } from "./components/Background";
 import { CloudGroup } from "./components/CloudGroup";
 import { Suspense } from "react";
+import { BackgroundPlayer } from "./components/BackgroundPlayer";
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
           </group>
 
           <CloudGroup />
+
+          <BackgroundPlayer />
         </Suspense>
       </Canvas>
 

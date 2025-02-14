@@ -8,9 +8,11 @@ export interface YouTubePlayerProps {
 const PLAYER_OPTIONS = {
   height: "0",
   width: "0", // Hide the player
+  host: "https://www.youtube-nocookie.com",
   playerVars: {
     autoplay: 1, // Auto-play the video
     loop: 1, // Loop the video
+    mute: 1,
     controls: 0, // Hide controls
     modestbranding: 1,
     showinfo: 0,
@@ -20,9 +22,19 @@ const PLAYER_OPTIONS = {
 
 export function YouTubePlayer({ videoId }: YouTubePlayerProps) {
   const onReady = useCallback((event: YouTubeEvent) => {
+    console.log(event);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    event.target.mute();
     event.target.playVideo(); // Ensure the video plays automatically
+    event.target.unMute();
   }, []);
 
-  return <YouTube videoId={videoId} opts={PLAYER_OPTIONS} onReady={onReady} />;
+  return (
+    <YouTube
+      videoId={videoId}
+      opts={PLAYER_OPTIONS}
+      onReady={onReady}
+      onError={(e) => console.error(e)}
+    />
+  );
 }

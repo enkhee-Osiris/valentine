@@ -9,7 +9,7 @@ export type FloppyProps = ThreeElements["group"];
 export function Floppy(props: FloppyProps) {
   const groupRef = useRef<THREE.Group>(null);
 
-  const { nodes, materials } = useGLTF("./public/models/floppy.glb");
+  const { nodes, materials } = useGLTF("./models/floppy.glb");
 
   useFrame((_, delta) => {
     if (groupRef.current) {
@@ -53,4 +53,4 @@ export function Floppy(props: FloppyProps) {
   );
 }
 
-useGLTF.preload("./public/models/floppy.glb");
+useGLTF.preload("./models/floppy.glb");
