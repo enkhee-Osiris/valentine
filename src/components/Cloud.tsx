@@ -42,12 +42,12 @@ export function Cloud({ opacity, ...props }: CloudProps) {
   return (
     <group {...props} ref={groupRef} dispose={null}>
       <mesh
+        castShadow
+        receiveShadow
         // @ts-expect-error
         geometry={nodes.Node.geometry}
-      >
-        {/* eslint-disable @typescript-eslint/no-misused-spread */}
-        <meshStandardMaterial {...materials["lambert2SG.001"]} transparent opacity={opacity} />
-      </mesh>
+        material={materials["lambert2SG.001"]}
+      />
     </group>
   );
 }

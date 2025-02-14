@@ -29,7 +29,16 @@ function App() {
       <Canvas>
         <color attach="background" args={["#ececec"]} />
 
-        <Environment preset="sunset" />
+        <Environment
+          background={false}
+          backgroundBlurriness={0}
+          backgroundIntensity={1}
+          backgroundRotation={[0, Math.PI / 2, 0]}
+          environmentIntensity={0.6}
+          environmentRotation={[0, Math.PI * 2, 0]}
+          preset="dawn"
+          scene={undefined}
+        />
 
         <PerspectiveCamera position={[0, 0, 5]} fov={30} makeDefault />
 
