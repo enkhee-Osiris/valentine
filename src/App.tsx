@@ -1,14 +1,29 @@
 /* eslint-disable react/no-unknown-property */
 import "./App.css";
+import { Suspense, useCallback, useRef } from "react";
+import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
-import { Floppy } from "./components/Floppy";
 import { Environment, Float, Loader, PerspectiveCamera } from "@react-three/drei";
+
+import { Floppy } from "./components/Floppy";
 import { Background } from "./components/Background";
 import { CloudGroup } from "./components/CloudGroup";
-import { Suspense } from "react";
 import { BackgroundPlayer } from "./components/BackgroundPlayer";
 
 function App() {
+  const audioRef = useRef<THREE.PositionalAudio>(null);
+
+  const handleFloppyClick = useCallback(() => {
+    if (audioRef.current) {
+      const playing = audioRef.current.isPlaying;
+      if (!playing) {
+        audioRef.current.play();
+      } else {
+        audioRef.current.pause();
+      }
+    }
+  }, []);
+
   return (
     <>
       <Canvas>
@@ -23,13 +38,18 @@ function App() {
         <Suspense fallback={null}>
           <group>
             <Float floatIntensity={2} speed={1}>
-              <Floppy rotation-y={-Math.PI / 5} scale={[0.4, 0.4, 0.4]} position={[0, 0, -1]} />
+              <Floppy
+                onClick={handleFloppyClick}
+                rotation-y={-Math.PI / 5}
+                scale={[0.4, 0.4, 0.4]}
+                position={[0, 0, -1]}
+              />
             </Float>
           </group>
 
           <CloudGroup />
 
-          <BackgroundPlayer />
+          <BackgroundPlayer ref={audioRef} />
         </Suspense>
       </Canvas>
 
