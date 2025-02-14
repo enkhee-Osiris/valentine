@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import * as THREE from "three";
 import { PositionalAudio, useProgress } from "@react-three/drei";
 
-const BackgroundPlayer = forwardRef<THREE.PositionalAudio, {}>((_, ref) => {
+const BackgroundPlayer = forwardRef<THREE.PositionalAudio>((_, ref) => {
   const { loaded } = useProgress();
 
   if (loaded) {

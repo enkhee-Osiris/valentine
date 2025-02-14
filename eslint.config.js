@@ -41,6 +41,18 @@ export default tseslint.config(
       ...reactThree.configs.recommended.rules,
       "@typescript-eslint/ban-ts-comment": "off",
       "@typescript-eslint/no-unsafe-assignment": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          args: "all",
+          argsIgnorePattern: "^_",
+          caughtErrors: "all",
+          caughtErrorsIgnorePattern: "^_",
+          destructuredArrayIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          ignoreRestSiblings: true,
+        },
+      ],
       "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
     },
   }

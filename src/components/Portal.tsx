@@ -16,10 +16,10 @@ function assignRef<T>(ref: PossibleRef<T>, value: T): RefCleanup<T> {
 function createPortalNode(props: React.ComponentPropsWithoutRef<"div">) {
   const node = document.createElement("div");
   node.setAttribute("data-portal", "true");
-  typeof props.className === "string" &&
+  if (typeof props.className === "string")
     node.classList.add(...props.className.split(" ").filter(Boolean));
-  typeof props.style === "object" && Object.assign(node.style, props.style);
-  typeof props.id === "string" && node.setAttribute("id", props.id);
+  if (typeof props.style === "object") Object.assign(node.style, props.style);
+  if (typeof props.id === "string") node.setAttribute("id", props.id);
   return node;
 }
 
@@ -52,7 +52,7 @@ export const Portal = forwardRef<HTMLDivElement, PortalProps>(
           document.body.removeChild(nodeRef.current);
         }
       };
-    }, [target]);
+    }, [target]); // eslint-disable-line react-hooks/exhaustive-deps
 
     if (!mounted || !nodeRef.current) {
       return null;

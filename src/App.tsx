@@ -3,7 +3,7 @@ import "./App.css";
 import { Suspense, useCallback, useRef } from "react";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
-import { Environment, Float, Loader, OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import { Environment, Float, Loader, OrbitControls } from "@react-three/drei";
 
 import { Floppy } from "./components/Floppy";
 import { Background } from "./components/Background";

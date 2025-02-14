@@ -23,10 +23,11 @@ const PLAYER_OPTIONS = {
 export function YouTubePlayer({ videoId }: YouTubePlayerProps) {
   const onReady = useCallback((event: YouTubeEvent) => {
     console.log(event);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    /* eslint-disable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
     event.target.mute();
     event.target.playVideo(); // Ensure the video plays automatically
     event.target.unMute();
+    /* eslint-enable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
   }, []);
 
   return (
@@ -34,7 +35,9 @@ export function YouTubePlayer({ videoId }: YouTubePlayerProps) {
       videoId={videoId}
       opts={PLAYER_OPTIONS}
       onReady={onReady}
-      onError={(e) => console.error(e)}
+      onError={(e) => {
+        console.error(e);
+      }}
     />
   );
 }
