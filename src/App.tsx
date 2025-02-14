@@ -3,7 +3,7 @@ import "./App.css";
 import { Suspense, useCallback, useRef } from "react";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
-import { Environment, Float, Loader, OrbitControls } from "@react-three/drei";
+import { Environment, Float, Loader } from "@react-three/drei";
 
 import { Floppy } from "./components/Floppy";
 import { Background } from "./components/Background";
@@ -39,8 +39,6 @@ function App() {
           preset="dawn"
           scene={undefined}
         />
-
-        <OrbitControls />
 
         <Background />
 
